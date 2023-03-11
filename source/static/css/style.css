@@ -1,0 +1,82 @@
+* {
+    font-family: 'Shantell Sans', cursive;
+}
+
+body {
+    background: url("/static/img/back_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.right-menu {
+    float: right;
+}
+
+.container {
+    max-width: 1000px !important;
+}
+
+.card-margin {
+    margin-top: 42px;
+}
+
+.card-margin-product {
+    margin-top: 20px;
+}
+
+.green {
+    background: #1b7a72;
+    border-color: #1b7a72;
+}
+
+.card-padding {
+    padding-top: 15px;
+}
+
+.card-padding-bottom {
+    padding-bottom: 15px;
+}
+
+.small-text {
+    font-size: 13px;
+}
+
+.edit-buttons{
+    width: 90px;
+}
+
+.edit-buttons-detail{
+    width: 105px;
+}
+
+.margin-right-red {
+    margin-right: 20px;
+}
+
+.margin-right-blue {
+    margin-right: 10px;
+}
+
+.padding-category {
+    padding-top: 7px;
+}
+
+.margin-bottom-buttons {
+    margin-bottom: 15px;
+}
+
+.card-text-bt {
+        margin-bottom: 7px;
+}
+
+.green-tp {
+    margin-top: 5px;
+}
+
+.image-margin {
+    margin-top: 39px;
+}
+
+.title-delete {
+    margin-bottom: 20px;
+}

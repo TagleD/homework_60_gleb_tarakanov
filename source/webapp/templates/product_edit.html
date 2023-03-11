@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Редатирование товара{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center card-margin">
+            <div class="col-7 card text-bg-dark card-padding">
+                <div class="form">
+                    <h3>Отредактировать товар</h3>
+                    <form action="{% url 'product_edit' product.pk %}" method="post">
+                        {% include 'partial/create_and_update_form.html' with button_text='Редактировать' %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

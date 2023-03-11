@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление товара{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center card-margin">
+            <div class="col-8 card text-bg-dark">
+                <div class="row card-padding title-delete">
+                    <h3>Вы точно хотите удалить продукт?</h3>
+                </div>
+                <div class="row">
+                    <div class="col-6 image-margin">
+                        <img src="{{ product.image }}" class="img-fluid" alt="{{ product.name }}">
+                    </div>
+                    <div class="col-6">
+                        <h2>
+                            {{ product.name }}
+                        </h2>
+                        <p class="small-text">
+                            {{ product.category }}
+                        </p>
+                        <p>
+                            <b>
+                                Price: {{ product.coast }}$
+                            </b>
+                        </p>
+                        <p>
+                            {{ product.description }}
+                        </p>
+                        <p>
+                            Осталось: {{ product.balance }}шт.
+                        </p>
+                        <p class="small-text">
+                            added: {{ product.added_at }}
+                        </p>
+                        <div class="row margin-bottom-buttons">
+                            <div class="col-4">
+                                <a class="btn btn-primary edit-buttons" href="{% url 'products_view' %}"
+                                   role="button">Отмена</a>
+                            </div>
+                            <div class="col-3">
+                                <a class="btn btn-danger" href="{% url 'confirm_delete' product.pk %}" role="button">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

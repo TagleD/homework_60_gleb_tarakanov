@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Продукты{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+                <div class="col-4">
+                    <div class="card text-bg-dark card-margin" style="width: 18rem;">
+                        <img src="{{ product.image }}" class="card-img-top" alt="{{ product.description }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ product.name }}</h4>
+                            <p class="card-text card-text-bt">{{ product.category }}</p>
+                            <h5>Price: {{ product.coast }}$</h5>
+                            <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary green green-tp">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

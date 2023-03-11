@@ -1,0 +1,124 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "Apparition",
+    "description": "Apparition — культовый вариант Arasaka JKE-X2 Kenshin в Cyberpunk 2077",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/d/dc/Kenshin_Frank.png/revision/latest?cb=20220330180235",
+    "category": "PISTOl",
+    "balance": 1,
+    "coast": "300.00",
+    "added_at": "2023-02-26T20:37:19.448Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "Militech M251s Ajax",
+    "description": "M251s Ajax — силовая штурмовая винтовка производства Militech в Cyberpunk 2077",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/f/f3/Ajax_Default.png/revision/latest?cb=20220720083608",
+    "category": "RIFLES",
+    "balance": 5,
+    "coast": "699.00",
+    "added_at": "2023-06-26T20:38:15.814Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "Prejudice",
+    "description": "Одна из лучших винтовок, когда-либо украшавших планету. Относитесь к ней с уважением, которого она заслуживает.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/0/05/Masamune_Rogue.png/revision/latest?cb=20211214122620",
+    "category": "RIFLES",
+    "balance": 2,
+    "coast": "1099.00",
+    "added_at": "2020-09-26T20:39:19.887Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 4,
+  "fields": {
+    "name": "Pride",
+    "description": "Гордость — это культовый вариант конституционной свободы оружия в Cyberpunk 2077. Повсюду памятник пистолетам.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/0/03/Liberty_Rogue.png/revision/latest?cb=20220823110313",
+    "category": "PISTOLS",
+    "balance": 3,
+    "coast": "1049.00",
+    "added_at": "2027-04-30T20:40:24.843Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 5,
+  "fields": {
+    "name": "Overwatch",
+    "description": "A sniper rifle that belonged to Panam. Increased reload spead and lethal accuracy - a rifle you can count on. Overwatch is an Iconic variant of the Techtronika SPT32 Grad Power Sniper Rifle in Cyberpunk 2077.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/c/c3/Grad_Panam.png/revision/latest?cb=20220724205353",
+    "category": "SNIPERS",
+    "balance": 1,
+    "coast": "900.00",
+    "added_at": "2023-02-26T15:50:49.788Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 6,
+  "fields": {
+    "name": "Tsunami Nekomata",
+    "description": "Precision without compromise. The Nekomata is a Tech Sniper Rifle manufactured by Tsunami Defense Systems in Cyberpunk 2077.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/8/8c/Nekomata_Default.png/revision/latest?cb=20220724094946",
+    "category": "SNIPERS",
+    "balance": 12,
+    "coast": "789.99",
+    "added_at": "2023-02-26T16:42:23.871Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 7,
+  "fields": {
+    "name": "Stinger",
+    "description": "This iconic knife is the signature weapon of Aldecaldos member Driss Meriana, also known as Scorpion. Small but incredibly deadly. It belonged to Scorpion, a nomad of the Aldecaldos clan.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/0/0b/Knife_Stinger.png/revision/latest?cb=20220316132238",
+    "category": "MELEE",
+    "balance": 2,
+    "coast": "500.99",
+    "added_at": "2023-02-26T16:43:12.535Z"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 8,
+  "fields": {
+    "name": "Hammer",
+    "description": "Молот — тупое оружие ближнего боя в Cyberpunk 2077.\r\nС молотком в руке любая проблема кажется гвоздем.",
+    "image": "https://static.wikia.nocookie.net/cyberpunk/images/d/da/Hammer_Default.png/revision/latest?cb=20220316180444",
+    "category": "MELEE",
+    "balance": 0,
+    "coast": "900.00",
+    "added_at": "2023-02-26T16:44:22.664Z"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$4kcsurN1xy9j6Ygv0bEKuW$Mu2L4Q2lRvqxaaz1qCqakbQY9i6U+ZX53RBYKM0JSkQ=",
+    "last_login": "2023-02-26T14:41:34.270Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-02-26T14:36:20.894Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
