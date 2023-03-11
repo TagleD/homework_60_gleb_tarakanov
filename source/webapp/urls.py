@@ -1,9 +1,8 @@
 from django.urls import path
 
-
-
+from webapp.views.base import ProductsListView
 from webapp.views.products import (
-    ProductsListView, ProductDetailView, ProductCreateView,
+    ProductDetailView, ProductCreateView,
     ProductUpdateView, ProductDeleteView
 )
 

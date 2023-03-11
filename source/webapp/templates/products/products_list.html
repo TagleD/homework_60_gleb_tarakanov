@@ -19,6 +19,13 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="row d-flex justify-content-center margin-pagination">
+            <div class="col-7">
+                {% if is_paginated %}
+                    {% include 'partial/pagination.html' %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 
