@@ -40,7 +40,10 @@
                                    role="button">Отмена</a>
                             </div>
                             <div class="col-3">
-                                <a class="btn btn-danger" href="{% url 'confirm_delete' product.pk %}" role="button">Удалить</a>
+                                <form action="{% url 'confirm_delete' product.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class='btn btn-danger'>Удалить</button>
+                                </form>
                             </div>
                         </div>
                     </div>
