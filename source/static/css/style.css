@@ -88,3 +88,13 @@ body {
 .black {
     color: black;
 }
+
+.search-button {
+    margin-left: 15px;
+    padding-bottom: 29px;
+}
+
+.search-form {
+    height: 24px;
+    margin-left: 5px;
+}
