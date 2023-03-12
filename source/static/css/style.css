@@ -98,3 +98,12 @@ body {
     height: 24px;
     margin-left: 5px;
 }
+
+.basket-button {
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.remainder-text{
+    margin-top: 6px;
+}

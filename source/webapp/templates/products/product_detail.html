@@ -25,15 +25,26 @@
                         <p>
                             {{ product.description }}
                         </p>
-                        <p>
-                            Осталось: {{ product.balance }}шт.
-                        </p>
+                        <div class="row">
+                            <div class="col-5">
+                                <p class="remainder-text">
+                                    Осталось: {{ product.balance }}шт.
+                                </p>
+                            </div>
+                            <div class="col-5">
+                                <form action="{% url 'basket_add_product' product.pk %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class='btn btn-outline-success '>В корзину</button>
+                                </form>
+                            </div>
+                        </div>
                         <p class="small-text">
                             added: {{ product.added_at }}
                         </p>
                         <div class="row margin-bottom-buttons">
                             <div class="col-5">
-                                <a class="btn btn-primary edit-buttons-detail" href="{% url 'product_edit' product.pk %}"
+                                <a class="btn btn-primary edit-buttons-detail"
+                                   href="{% url 'product_edit' product.pk %}"
                                    role="button">Изменить</a>
                             </div>
                             <div class="col-3">

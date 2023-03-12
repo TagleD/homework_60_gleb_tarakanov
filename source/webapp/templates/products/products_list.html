@@ -17,7 +17,18 @@
                             <h4 class="card-title">{{ product.name }}</h4>
                             <p class="card-text card-text-bt">{{ product.category }}</p>
                             <h5>Price: {{ product.coast }}$</h5>
-                            <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary green green-tp">Подробнее</a>
+                            <div class="row">
+                                <div class="col-5">
+                                    <a href="{% url 'product_detail' product.pk %}"
+                                       class="btn btn-primary green green-tp">Подробнее</a>
+                                </div>
+                                <div class="col-6">
+                                    <form action="{% url 'basket_add_product' product.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class='btn btn-outline-success basket-button'>В корзину</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

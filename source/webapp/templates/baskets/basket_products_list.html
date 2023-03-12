@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center card-margin">
+            <div class="col-9">
+                <div class="card text-bg-dark card-margin">
+                    <h3>Товары в корзине</h3>
+                    <table class="table-dark">
+                        <thead>
+                        <tr class="table-dark">
+                            <th scope="col">#</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Количество</th>
+                            <th scope="col">Сумма</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for product in basket %}
+                            <tr>
+                                <th scope="row">{{ product.id }}</th>
+                                <td class="table-dark">{{ product.product_name }}</td>
+                                <td class="table-dark">{{ product.number }}</td>
+                                <td class="table-dark">{{ product.product_total }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <th scope="row">#</th>
+                            <td class="table-dark"></td>
+                            <td class="table-dark">Итого</td>
+                            <td class="table-dark">
+{#                                {% for product in basket %}#}
+{#                                {{ product.basket_total }}#}
+{#                                {% endfor %}#}
+                                {{ basket_total }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,6 +1,6 @@
 from django import forms
 
-from webapp.models import Product
+from webapp.models import Product, Basket
 
 
 class ProductForm(forms.ModelForm):
@@ -19,3 +19,9 @@ class ProductForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=20, required=False, label='Найти')
+
+
+class BasketForm(forms.ModelForm):
+    class Meta:
+        model = Basket
+        fields = ('number',)
