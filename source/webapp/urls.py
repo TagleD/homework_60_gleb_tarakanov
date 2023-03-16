@@ -1,7 +1,7 @@
 from django.urls import path
 
 from webapp.views.base import ProductsListView
-from webapp.views.baskets import BasketAddFormView, BasketProductsListView
+from webapp.views.baskets import BasketAddFormView, BasketProductsListView, BasketDeleteOneView, BasketDeleteView
 from webapp.views.products import (
     ProductDetailView, ProductCreateView,
     ProductUpdateView, ProductDeleteView
@@ -19,6 +19,8 @@ urlpatterns = [
     path('article/<int:pk>/confirm_delete/', ProductDeleteView.as_view(), name='confirm_delete'),
 
     #URl для работы с корзиной
-    path('basket/product/add/<int:pk>', BasketAddFormView.as_view(), name='basket_add_product'),
-    path('basket/products/', BasketProductsListView.as_view(), name='basket_add_product'),
+    path('basket/product/<int:pk>/add', BasketAddFormView.as_view(), name='basket_add_product'),
+    path('basket/products/', BasketProductsListView.as_view(), name='basket_list'),
+    path('basket/products/<int:pk>/delete_one', BasketDeleteOneView.as_view(), name='basket_delete_one'),
+    path('basket/products/<int:pk>/delete', BasketDeleteView.as_view(), name='basket_delete'),
 ]

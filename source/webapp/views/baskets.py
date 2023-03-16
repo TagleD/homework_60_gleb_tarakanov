@@ -1,3 +1,4 @@
+from django.views import View
 from django.views.generic import ListView, FormView
 from django.shortcuts import redirect, get_object_or_404
 from webapp.forms import BasketAddForm
@@ -26,6 +27,28 @@ class BasketAddFormView(FormView):
                 basket.number += number
                 basket.save()
         return redirect('index')
+
+
+class BasketDeleteOneView(View):
+    def get(self, request, *args, **kwargs):
+        basket_product = get_object_or_404(Basket, pk=kwargs.get('pk'))
+        if not basket_product.number == 1:
+            basket_product.number -= 1
+            basket_product.save()
+        else:
+            basket_product.delete()
+        return redirect('basket_list')
+
+
+class BasketDeleteView(View):
+
+    def post(self, request, *args, **kwargs):
+        basket_product = get_object_or_404(Basket, pk=kwargs.get('pk'))
+        basket_product.delete()
+        return redirect('basket_list')
+
+
+
 
 
 class BasketProductsListView(ListView):

@@ -129,3 +129,15 @@ body {
     padding-left: 11px;
     padding-top: 7px;
 }
+
+.table-number {
+    width: 15%;
+}
+
+.table-sum {
+    padding-left: 10px;
+}
+
+.table-delete {
+    margin-bottom: -20px;
+}

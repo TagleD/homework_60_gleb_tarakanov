@@ -7,38 +7,51 @@
         <div class="row d-flex justify-content-center card-margin">
             <div class="col-9">
                 <div class="card text-bg-dark card-margin">
-                    <h3>Товары в корзине</h3>
-                    <table class="table-dark">
-                        <thead>
-                        <tr class="table-dark">
-                            <th scope="col">#</th>
-                            <th scope="col">Название</th>
-                            <th scope="col">Количество</th>
-                            <th scope="col">Сумма</th>
-                        </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                        {% for product in basket %}
+                    <div class="table-responsive">
+                        <h2 class="text-center">Товары в корзине</h2>
+                        <table class="table table-dark table-hover">
+                            <thead>
                             <tr>
-                                <th scope="row">{{ product.id }}</th>
-                                <td class="table-dark">{{ product.product_name }}</td>
-                                <td class="table-dark">{{ product.number }}</td>
-                                <td class="table-dark">{{ product.product_total }}</td>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col" class="table-number">Количество</th>
+                                <th scope="col" class="table-sum">Сумма</th>
+                                <th scope="col">Удалить</th>
                             </tr>
-                        {% endfor %}
-                        <tr>
-                            <th scope="row">#</th>
-                            <td class="table-dark"></td>
-                            <td class="table-dark">Итого</td>
-                            <td class="table-dark">
-                                {{ basket_total }}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for product in basket %}
+                                <tr>
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.product_name }}</td>
+                                    <td>
+                                        <div class="input-group">
+                                            <a href="{% url 'basket_delete_one' product.pk %}" class="btn btn-danger">-</a>
+                                            <input type="text" class="form-control" value="{{ product.number }}">
+                                        </div>
+                                    </td>
+                                    <td class="table-sum">{{ product.product_total }}</td>
+                                    <td>
+                                        <form action="{% url 'basket_delete' product.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class='btn btn-outline-secondary table-delete'>Удалить</button>
+                                        </form>
+{#                                        <a href="#" class="btn btn-outline-secondary">Удалить</a>#}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Итого: {{ basket_total }}</strong></td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Оформить заказ</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 {% endblock %}
