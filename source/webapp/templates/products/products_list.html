@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 
 {% block title %}Продукты{% endblock %}
 
@@ -18,15 +19,18 @@
                             <p class="card-text card-text-bt">{{ product.category }}</p>
                             <h5>Price: {{ product.coast }}$</h5>
                             <div class="row">
+                                <div class="col-12">
+                                    <form action="{% url 'basket_add_product' product.pk %}" class="d-flex basket-add-form" method="post">
+                                        {% csrf_token %}
+                                        {% bootstrap_form basket_add_form show_label=False %}
+                                        {% bootstrap_button button_type="submit" content='В корзину' button_class="btn btn-outline-success add-button" %}
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-5">
                                     <a href="{% url 'product_detail' product.pk %}"
                                        class="btn btn-primary green green-tp">Подробнее</a>
-                                </div>
-                                <div class="col-6">
-                                    <form action="{% url 'basket_add_product' product.pk %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class='btn btn-outline-success basket-button'>В корзину</button>
-                                    </form>
                                 </div>
                             </div>
                         </div>

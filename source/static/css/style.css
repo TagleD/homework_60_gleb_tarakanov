@@ -107,3 +107,20 @@ body {
 .remainder-text{
     margin-top: 6px;
 }
+
+
+.form-control {
+    width: 130px;
+    margin-left: -6px;
+}
+
+.add-button {
+    margin-left: 15px;
+    height: 38px;
+}
+
+.basket-add-form {
+    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-left: 6px;
+}

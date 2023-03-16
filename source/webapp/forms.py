@@ -21,7 +21,6 @@ class SearchForm(forms.Form):
     search = forms.CharField(max_length=20, required=False, label='Найти')
 
 
-class BasketForm(forms.ModelForm):
-    class Meta:
-        model = Basket
-        fields = ('number',)
+class BasketAddForm(forms.Form):
+    number = forms.IntegerField(min_value=1, required=True, label='Количество')
+

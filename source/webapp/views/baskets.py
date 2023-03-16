@@ -1,54 +1,41 @@
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, FormView
 from django.shortcuts import redirect, get_object_or_404
-from webapp.forms import BasketForm
+from webapp.forms import BasketAddForm
 from webapp.models import Product, Basket
 
 
-
-class BasketAddFormView(View):
+class BasketAddFormView(FormView):
+    form_class = BasketAddForm
 
     def post(self, request, *args, **kwargs):
-        product = Product.objects.get(pk=kwargs.get('pk'))
-        product_in_basket = Basket.objects.filter(product=product.pk)
-        if product_in_basket:
-            for product in product_in_basket:
-                product.number += 1
-                product.save()
-            return redirect('products_view')
-        else:
-            basket_data = {
-                'product': product,
-                'number': 1
-            }
-            Basket.objects.create(**basket_data)
-            return redirect('products_view')
+        product = get_object_or_404(Product, pk=kwargs.get('pk'))
+        form = self.get_form_class()(request.POST)
+        if form.is_valid():
+            number = form.cleaned_data.get('number')
+            if not Basket.objects.filter(product=product).exists():
+                Basket.objects.create(product=product, number=number)
+            else:
+                basket = Basket.objects.filter(product=product).first()
+                basket.number += number
+                basket.save()
+        return redirect('index')
 
 
 class BasketProductsListView(ListView):
     template_name = 'baskets/basket_products_list.html'
     model = Basket
     context_object_name = 'basket'
-    extra_context = {'basket_total': Basket.objects.basket_total()}
     ordering = ('added_at',)
 
+    def get_count(self):
+        total = 0
+        baskets = Basket.objects.all()
+        for basket in baskets:
+            product = get_object_or_404(Product, pk=basket.product_id)
+            total += basket.number * product.coast
+        return total
 
-
-
-
-# class BasketAddFormView(View):
-#
-#     def post(self, request, *args, **kwargs):
-#         basket_form = BasketAddForm(data=request.POST)
-#         if not basket_form.is_valid():
-#             return redirect('products_view', basket_form=basket_form)
-#         else:
-#             product = get_object_or_404(Product, pk=kwargs.get('pk'))
-#             basket = basket_form.save(commit=False)
-#             basket.product = product
-#             basket.save()
-#             return redirect('products_view')
-
-
-
-
-
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['basket_total'] = self.get_count()
+        return context

@@ -1,6 +1,5 @@
 from django.db import models
 
-from webapp.managers import BasketManager
 
 
 class Basket(models.Model):
@@ -25,7 +24,7 @@ class Basket(models.Model):
         verbose_name="Время редактирования"
     )
 
-    objects = BasketManager()
+    # objects = BasketManager()
 
     def __str__(self):
         return f'в корзине {self.number} товаров'

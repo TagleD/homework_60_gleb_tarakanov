@@ -1,8 +1,10 @@
-from webapp.forms import SearchForm
+from webapp.forms import SearchForm, BasketAddForm
 from webapp.models import Product
 from django.views.generic import ListView
 from django.db.models import Q
 from django.utils.http import urlencode
+
+
 
 
 class ProductsListView(ListView):
@@ -36,6 +38,7 @@ class ProductsListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['form'] = self.form
+        context['basket_add_form'] = BasketAddForm()
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
         return context
