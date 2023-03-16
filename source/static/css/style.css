@@ -109,7 +109,7 @@ body {
 }
 
 
-.form-control {
+.basket-add-form > div > input {
     width: 130px;
     margin-left: -6px;
 }

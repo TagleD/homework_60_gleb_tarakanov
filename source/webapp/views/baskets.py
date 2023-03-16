@@ -1,4 +1,4 @@
-from django.views.generic import View, ListView, FormView
+from django.views.generic import ListView, FormView
 from django.shortcuts import redirect, get_object_or_404
 from webapp.forms import BasketAddForm
 from webapp.models import Product, Basket
@@ -12,10 +12,17 @@ class BasketAddFormView(FormView):
         form = self.get_form_class()(request.POST)
         if form.is_valid():
             number = form.cleaned_data.get('number')
+
             if not Basket.objects.filter(product=product).exists():
+                # Проверяем остаток товаров на складе по введенному числу
+                if number > product.balance:
+                    return redirect('index')
                 Basket.objects.create(product=product, number=number)
             else:
                 basket = Basket.objects.filter(product=product).first()
+                # Проверяем остаток товаров на складе по введенному числу + числу в корзине
+                if (number + basket.number) > product.balance:
+                    return redirect('index')
                 basket.number += number
                 basket.save()
         return redirect('index')
