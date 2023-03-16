@@ -3,41 +3,52 @@
 
 {% block title %}Продукты{% endblock %}
 
-{% block menu %}
+{% block search %}
     {% include 'partial/search.html' %}
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            {% for product in products %}
-                <div class="col-4">
-                    <div class="card text-bg-dark card-margin" style="width: 18rem;">
-                        <img src="{{ product.image }}" class="card-img-top" alt="{{ product.description }}">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ product.name }}</h4>
-                            <p class="card-text card-text-bt">{{ product.category }}</p>
-                            <h5>Price: {{ product.coast }}$</h5>
-                            <div class="row">
-                                <div class="col-12">
-                                    <form action="{% url 'basket_add_product' product.pk %}" class="d-flex basket-add-form" method="post">
-                                        {% csrf_token %}
-                                        {% bootstrap_form basket_add_form show_label=False %}
-                                        {% bootstrap_button button_type="submit" content='В корзину' button_class="btn btn-outline-success add-button" %}
-                                    </form>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-4">
+                        <div class="card text-bg-dark card-margin" style="width: 18rem;">
+                            <img src="{{ product.image }}" class="card-img-top" alt="{{ product.description }}">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ product.name }}</h4>
+                                <p class="card-text card-text-bt">{{ product.category }}</p>
+                                <h5>Price: {{ product.coast }}$</h5>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form action="{% url 'basket_add_product' product.pk %}"
+                                              class="d-flex basket-add-form" method="post">
+                                            {% csrf_token %}
+                                            {% bootstrap_form basket_add_form show_label=False %}
+                                            {% bootstrap_button button_type="submit" content='В корзину' button_class="btn btn-outline-success add-button" %}
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <a href="{% url 'product_detail' product.pk %}"
-                                       class="btn btn-primary green green-tp">Подробнее</a>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <a href="{% url 'product_detail' product.pk %}"
+                                           class="btn btn-primary green green-tp">Подробнее</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-6">
+                    <div class="card text-bg-dark card-margin" >
+                        <h5 class="not-find">По вашему запросу товары не найдены</h5>
+                    </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endif %}
         <div class="row d-flex justify-content-center margin-pagination">
             <div class="col-7">
                 {% if is_paginated %}
