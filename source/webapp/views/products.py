@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from webapp.models import Product
@@ -14,31 +15,29 @@ class ProductDetailView(DetailView):
         context.update(kwargs)
         return super().get_context_data(**context)
 
-    # def get(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     context = self.get_context_data(object=self.object)
-    #     return self.render_to_response(context)
 
-
-class ProductCreateView(CreateView):
+class ProductCreateView(SuccessMessageMixin, CreateView):
     template_name = 'products/product_add.html'
     model = Product
     form_class = ProductForm
+    success_message = 'Товар успешно добавлен!'
 
     def get_success_url(self):
         return reverse('product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'products/product_edit.html'
     model = Product
     form_class = ProductForm
+    success_message = 'Товар успешно изменен!'
 
     def get_success_url(self):
         return reverse('product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(SuccessMessageMixin, DeleteView):
     template_name = 'products/product_confirm_delete.html'
     model = Product
     success_url = reverse_lazy('index')
+    success_message = 'Товар успешно удален!'

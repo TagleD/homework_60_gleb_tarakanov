@@ -1,6 +1,6 @@
 from django import forms
 
-from webapp.models import Product, Basket
+from webapp.models import Product, Basket, Order
 
 
 class ProductForm(forms.ModelForm):
@@ -23,4 +23,15 @@ class SearchForm(forms.Form):
 
 class BasketAddForm(forms.Form):
     number = forms.IntegerField(min_value=1, required=True, label='Количество')
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('username', 'phone', 'address')
+        labels = {
+            'username': 'Введите свое имя',
+            'phone': 'Введите ваш телефон',
+            'address': 'Введите ваш адрес'
+        }
 

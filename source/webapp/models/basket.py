@@ -36,11 +36,3 @@ class Basket(models.Model):
     def product_name(self):
         name = self.product.name
         return name
-
-    # def basket_total(self):
-    #     products = Basket.objects.all()
-    #     total = 0
-    #     for product in products:
-    #         total += product.product_total()
-    #     print(total)
-    #     return total

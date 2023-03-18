@@ -8,47 +8,59 @@
             <div class="col-9">
                 <div class="card text-bg-dark card-margin">
                     <div class="table-responsive">
-                        <h2 class="text-center">Товары в корзине</h2>
+                        <h2 class="text-center table-h2">Товары в корзине</h2>
                         <table class="table table-dark table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Название</th>
                                 <th scope="col" class="table-number">Количество</th>
-                                <th scope="col" class="table-sum">Сумма</th>
+                                <th scope="col" class="table-sum table-sum">Сумма</th>
                                 <th scope="col">Удалить</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for product in basket %}
-                                <tr>
-                                    <td>{{ product.id }}</td>
-                                    <td>{{ product.product_name }}</td>
-                                    <td>
-                                        <div class="input-group">
-                                            <a href="{% url 'basket_delete_one' product.pk %}" class="btn btn-danger">-</a>
-                                            <input type="text" class="form-control" value="{{ product.number }}">
-                                        </div>
-                                    </td>
-                                    <td class="table-sum">{{ product.product_total }}</td>
-                                    <td>
-                                        <form action="{% url 'basket_delete' product.pk %}" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class='btn btn-outline-secondary table-delete'>Удалить</button>
-                                        </form>
-{#                                        <a href="#" class="btn btn-outline-secondary">Удалить</a>#}
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                            {% if basket %}
+                                {% for product in basket %}
+                                    <tr>
+                                        <td>{{ product.id }}</td>
+                                        <td>{{ product.product_name }}</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <a href="{% url 'basket_delete_one' product.pk %}"
+                                                   class="btn btn-danger">-</a>
+                                                <input type="text" class="form-control" value="{{ product.number }}">
+                                            </div>
+                                        </td>
+                                        <td class="table-sum">{{ product.product_total }}</td>
+                                        <td>
+                                            <form action="{% url 'basket_delete' product.pk %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class='btn btn-outline-secondary table-delete'>
+                                                    Удалить
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-center">Вы еще не добавили товары в корзину</p>
+                            {% endif %}
                             <tr>
                                 <td colspan="3"></td>
-                                <td><strong>Итого: {{ basket_total }}</strong></td>
-                                <td>
-                                    <a href="#" class="btn btn-success">Оформить заказ</a>
-                                </td>
+                                <td class="table-sum"><strong>Итого: {{ basket_total }}</strong></td>
+                                <td></td>
                             </tr>
                             </tbody>
                         </table>
+                        <h2 class="text-center table-h2">Оформить заказ</h2>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-8">
+                                <form action="{% url 'order' %}" method="post" class="order-form">
+                                    {% include 'partial/order_form.html' %}
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
