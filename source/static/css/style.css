@@ -149,3 +149,7 @@ body {
 .order-form {
     margin-top: 10px;
 }
+
+.card-margin-bottom {
+    margin-bottom: 100px;
+}

@@ -22,9 +22,11 @@ class OrderAddView(View):
 
             for basket_product in basket_products:
                 OrderProduct.objects.create(product=basket_product.product, order=order, number=basket_product.number)
+                basket_product.product.balance -= basket_product.number
+                basket_product.product.save()
             basket_products.delete()
             messages.success(request, 'Ваш заказ успешно создан')
             return redirect('index')
         else:
-            reverse('product_detail', kwargs={'form': form})
+            reverse('basket_list', kwargs={'form': form})
 

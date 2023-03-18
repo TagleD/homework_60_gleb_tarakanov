@@ -39,3 +39,4 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Заказчик -{self.username}, адресс - {self.address}'
+
