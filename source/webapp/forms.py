@@ -1,6 +1,5 @@
 from django import forms
-
-from webapp.models import Product, Basket, Order
+from webapp.models import Product, Order
 
 
 class ProductForm(forms.ModelForm):
@@ -34,4 +33,3 @@ class OrderForm(forms.ModelForm):
             'phone': 'Введите ваш телефон',
             'address': 'Введите ваш адрес'
         }
-

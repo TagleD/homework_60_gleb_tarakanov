@@ -8,11 +8,6 @@ phone_regex_KZ = RegexValidator(
 
 
 class Order(models.Model):
-    # product = models.ManyToManyField(
-    #     to='webapp.Product',
-    #     related_name='orders',
-    #     blank=True
-    # )
     username = models.CharField(
         max_length=50,
         null=False,
@@ -39,4 +34,3 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Заказчик -{self.username}, адресс - {self.address}'
-

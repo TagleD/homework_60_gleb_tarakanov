@@ -5,8 +5,6 @@ from django.db.models import Q
 from django.utils.http import urlencode
 
 
-
-
 class ProductsListView(ListView):
     template_name = 'products/products_list.html'
     model = Product
@@ -42,6 +40,3 @@ class ProductsListView(ListView):
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
         return context
-
-
-

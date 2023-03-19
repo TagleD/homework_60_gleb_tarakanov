@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Basket(models.Model):
     product = models.ForeignKey(
         'webapp.Product',

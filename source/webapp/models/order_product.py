@@ -20,4 +20,3 @@ class OrderProduct(models.Model):
         verbose_name='Количество',
         default=1
     )
-

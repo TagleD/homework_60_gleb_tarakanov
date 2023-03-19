@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.views import View
-from django.views.generic import ListView, FormView
+from django.views.generic import FormView
 from django.shortcuts import redirect, get_object_or_404
-from webapp.forms import BasketAddForm, OrderForm
+from webapp.forms import BasketAddForm
 from webapp.models import Product, Basket
 
 
@@ -62,27 +62,3 @@ class BasketDeleteView(View):
         basket_product.delete()
         messages.success(request, 'Товар удален из корзины')
         return redirect('basket_list')
-
-
-
-
-
-class BasketProductsListView(ListView):
-    template_name = 'baskets/basket_products_list.html'
-    model = Basket
-    context_object_name = 'basket'
-    ordering = ('added_at',)
-
-    def get_count(self):
-        total = 0
-        baskets = Basket.objects.all()
-        for basket in baskets:
-            product = get_object_or_404(Product, pk=basket.product_id)
-            total += basket.number * product.coast
-        return total
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(object_list=object_list, **kwargs)
-        context['basket_total'] = self.get_count()
-        context['form'] = self.request.POST.get('form') or OrderForm()
-        return context
